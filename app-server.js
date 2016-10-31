@@ -6,9 +6,6 @@ var webpackConfig = require('./webpack.config.js');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 
-var _collection = require('lodash/collection'); // find
-var _util = require('lodash/util'); // matches
-
 var app = express();
 
 // Hot reloading

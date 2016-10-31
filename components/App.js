@@ -13,7 +13,7 @@ export default class App extends Component {
 
 				<hr/>
 
-				{React.cloneElement(this.props.children, {...this.state, emit: this.emit})}
+				{React.cloneElement(this.props.children)}
 			</div>
 			);
 	}

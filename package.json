@@ -1,7 +1,7 @@
 {
   "name": "css-tools",
   "version": "1.0.0",
-  "description": "Collection of CSS tools build in react",
+  "description": "Collection of CSS tools built in react.js",
   "main": "index.js",
   "author": "Manvendra Singh",
   "license": "MIT",

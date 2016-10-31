@@ -338,7 +338,6 @@ export default class BorderRadius extends Component {
 
 				<div style={style}></div>
 			</div>
-
 		);
 	}
 }
