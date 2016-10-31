@@ -18,17 +18,17 @@ export default class BorderRadius extends Component {
 				allFour: false
 			},
 
-			borderTopLeftRadiusXValue: '',
-			borderTopLeftRadiusYValue: '',
+			borderTopLeftRadiusXValue: '50%',
+			borderTopLeftRadiusYValue: '60%',
 
-			borderTopRightRadiusXValue: '',
-			borderTopRightRadiusYValue: '',
+			borderTopRightRadiusXValue: '50%',
+			borderTopRightRadiusYValue: '60%',
 
-			borderBottomRightRadiusXValue: '',
-			borderBottomRightRadiusYValue: '',
+			borderBottomRightRadiusXValue: '50%',
+			borderBottomRightRadiusYValue: '40%',
 
-			borderBottomLeftRadiusXValue: '',
-			borderBottomLeftRadiusYValue: ''
+			borderBottomLeftRadiusXValue: '50%',
+			borderBottomLeftRadiusYValue: '40%'
 
 		};
 
@@ -61,6 +61,7 @@ export default class BorderRadius extends Component {
 			enableBorderBottomLeftY : ['borderBottomLeftRadiusYValue', this._borderBottomLeftRadiusXBox]
 		};
 		this.toggleBoxesDisplay('onlyOne');
+		this.toggleYCheckBoxHandler();
 	}
 
 	resetYBoxValue(yOption) {
@@ -279,7 +280,7 @@ export default class BorderRadius extends Component {
 
 		const style = {
 			backgroundColor: '#eef',
-			width: 300,
+			width: 200,
 			height: 300,
 			borderTopLeftRadius: `${borderTopLeftRadiusXValue+this.getCssUnit(borderTopLeftRadiusXValue)} ${borderTopLeftRadiusYValue+this.getCssUnit(borderTopLeftRadiusYValue)}`,
 			borderTopRightRadius: `${borderTopRightRadiusXValue+this.getCssUnit(borderTopRightRadiusXValue)} ${borderTopRightRadiusYValue+this.getCssUnit(borderTopRightRadiusYValue)}`,
