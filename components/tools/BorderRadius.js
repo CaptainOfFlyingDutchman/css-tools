@@ -141,22 +141,22 @@ export default class BorderRadius extends Component {
 	}
 
 	valueUpdater(
-		tLXV, tLVY, tRXV, tRYV,
+		tLXV, tLYV, tRXV, tRYV,
 		bLXV, bLYV, bRXV, bRYV
 	) {
-		this.setState({
+		const newState = {
 			borderTopLeftRadiusXValue: tLXV,
-			borderTopLeftRadiusYValue: tLVY,
-
 			borderTopRightRadiusXValue: tRXV,
-			borderTopRightRadiusYValue: tRYV,
-
 			borderBottomRightRadiusXValue: bRXV,
-			borderBottomRightRadiusYValue: bRYV,
-
 			borderBottomLeftRadiusXValue: bLXV,
-			borderBottomLeftRadiusYValue: bLYV
-		});
+		};
+		Object.assign(newState,
+			!this.state.enableBorderTopLeftY ? {borderTopLeftRadiusYValue: tLYV} : {},
+			!this.state.enableBorderTopRightY ? {borderTopRightRadiusYValue: tRYV} : {},
+			!this.state.enableBorderBottomRightY ? {borderBottomRightRadiusYValue: bRYV} : {},
+			!this.state.enableBorderBottomLeftY ? {borderBottomLeftRadiusYValue: bLYV} : {}
+		);
+		this.setState(newState);
 	}
 
 	updateTextBoxesValues() {
