@@ -51,6 +51,9 @@ export default class BorderRadius extends Component {
 		this.updateTextBoxesValues = this.updateTextBoxesValues.bind(this);
 		this.valueUpdater = this.valueUpdater.bind(this);
 		this.toggleBoxesDisplay = this.toggleBoxesDisplay.bind(this);
+
+		this.getCssString = this.getCssString.bind(this);
+		this.getYAxisValues = this.getYAxisValues.bind(this);
 	}
 
 	componentDidMount() {
@@ -261,6 +264,62 @@ export default class BorderRadius extends Component {
 		}
 	}
 
+	getCssString() {
+		const {
+			enableYConfiguration,
+
+			enableBorderTopLeftY,
+			enableBorderTopRightY,
+			enableBorderBottomRightY,
+			enableBorderBottomLeftY,
+
+			boxesState,
+
+			borderTopLeftRadiusXValue, borderTopLeftRadiusYValue,
+			borderTopRightRadiusXValue, borderTopRightRadiusYValue,
+			borderBottomRightRadiusXValue, borderBottomRightRadiusYValue,
+			borderBottomLeftRadiusXValue, borderBottomLeftRadiusYValue
+		} = this.state;
+
+		let borderRadius = "";
+
+		if (boxesState.onlyOne) {
+			borderRadius = borderTopLeftRadiusXValue+this.getCssUnit(borderTopLeftRadiusXValue) +
+							this.getYAxisValues();
+		}
+		if (boxesState.onlyTwo) {
+			borderRadius = borderTopLeftRadiusXValue+this.getCssUnit(borderTopLeftRadiusXValue) + ' ' +
+							borderTopRightRadiusXValue+this.getCssUnit(borderTopRightRadiusXValue) +
+								this.getYAxisValues();
+		}
+		if (boxesState.onlyThree) {
+			borderRadius = borderTopLeftRadiusXValue+this.getCssUnit(borderTopLeftRadiusXValue) + ' ' +
+							borderTopRightRadiusXValue+this.getCssUnit(borderTopRightRadiusXValue) + ' ' +
+							borderBottomRightRadiusXValue+this.getCssUnit(borderBottomRightRadiusXValue) +
+								this.getYAxisValues();
+		}
+		if (boxesState.allFour) {
+			borderRadius = borderTopLeftRadiusXValue+this.getCssUnit(borderTopLeftRadiusXValue) + ' ' +
+							borderTopRightRadiusXValue+this.getCssUnit(borderTopRightRadiusXValue) + ' ' +
+							borderBottomRightRadiusXValue+this.getCssUnit(borderBottomRightRadiusXValue) + ' ' +
+							borderBottomLeftRadiusXValue+this.getCssUnit(borderBottomLeftRadiusXValue) +
+								this.getYAxisValues();
+		}
+		return borderRadius;
+	}
+
+	getYAxisValues() {
+		const { enableBorderTopLeftY, enableBorderTopRightY, enableBorderBottomRightY, enableBorderBottomLeftY,
+				borderTopLeftRadiusYValue, borderTopRightRadiusYValue, borderBottomRightRadiusYValue, borderBottomLeftRadiusYValue
+		} = this.state;
+
+		return ((enableBorderTopLeftY || enableBorderTopRightY || enableBorderBottomRightY || enableBorderBottomLeftY) ? ' / ' : '') +
+					(enableBorderTopLeftY ? borderTopLeftRadiusYValue+this.getCssUnit(borderTopLeftRadiusYValue) : '') + ' ' +
+					(enableBorderTopRightY ? borderTopRightRadiusYValue+this.getCssUnit(borderTopRightRadiusYValue) : '') + ' ' +
+					(enableBorderBottomRightY ? borderBottomRightRadiusYValue+this.getCssUnit(borderBottomRightRadiusYValue) : '') + ' ' +
+					(enableBorderBottomLeftY ? borderBottomLeftRadiusYValue+this.getCssUnit(borderBottomLeftRadiusYValue) : '')
+	}
+
 	render() {
 		const {
 			enableYConfiguration,
@@ -278,14 +337,13 @@ export default class BorderRadius extends Component {
 			borderBottomLeftRadiusXValue, borderBottomLeftRadiusYValue
 		} = this.state;
 
+		const borderRadius = this.getCssString();
+
 		const style = {
 			backgroundColor: '#eef',
 			width: 200,
 			height: 300,
-			borderTopLeftRadius: `${borderTopLeftRadiusXValue+this.getCssUnit(borderTopLeftRadiusXValue)} ${borderTopLeftRadiusYValue+this.getCssUnit(borderTopLeftRadiusYValue)}`,
-			borderTopRightRadius: `${borderTopRightRadiusXValue+this.getCssUnit(borderTopRightRadiusXValue)} ${borderTopRightRadiusYValue+this.getCssUnit(borderTopRightRadiusYValue)}`,
-			borderBottomRightRadius: `${borderBottomRightRadiusXValue+this.getCssUnit(borderBottomRightRadiusXValue)} ${borderBottomRightRadiusYValue+this.getCssUnit(borderBottomRightRadiusYValue)}`,
-			borderBottomLeftRadius: `${borderBottomLeftRadiusXValue+this.getCssUnit(borderBottomLeftRadiusXValue)} ${borderBottomLeftRadiusYValue+this.getCssUnit(borderBottomLeftRadiusYValue)}`
+			borderRadius: borderRadius
 		};
 		console.log(style)
 		return(
@@ -336,7 +394,8 @@ export default class BorderRadius extends Component {
 				</div>
 
 				<hr/>
-
+				<p>border-radius: {borderRadius}</p>
+				<hr/>
 				<div style={style}></div>
 			</div>
 		);
