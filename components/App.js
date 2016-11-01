@@ -6,14 +6,18 @@ import BorderRadius from './tools/BorderRadius';
 export default class App extends Component {
 	render() {
 		return(
-			<div>
-				<ul>
-					<li><Link to="/border-radius">Border Radius</Link></li>
-				</ul>
+			<div className="container">
+				<div className="row">
+					<div className="col-xs-12 col-sm-12 col-md-3">
+						<ul>
+							<li><Link to="/border-radius">Border Radius</Link></li>
+						</ul>
+					</div>
 
-				<hr/>
-
-				{React.cloneElement(this.props.children)}
+					<div className="col-xs-12 col-sm-12 col-md-9">
+						{React.cloneElement(this.props.children)}
+					</div>
+				</div>
 			</div>
 			);
 	}
