@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 import BorderRadius from './tools/BorderRadius';
 
+require('../public/style.scss');
+
 export default class App extends Component {
 	render() {
 		return(

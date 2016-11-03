@@ -24,6 +24,14 @@ module.exports = {
 				test: /.js$/,
 				exclude: /(node_modules)|app-server.js/,
 				loader: 'babel-loader'
+			},
+			{
+				test: /.scss$/,
+				loaders: ["style", "css", "sass"]
+			},
+			{
+				test: /.(eot|woff2|woff|ttf|svg)$/,
+				loader: 'url?limit=10000'
 			}
 		]
 	}

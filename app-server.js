@@ -17,7 +17,6 @@ app.use(webpackHotMiddleware(compiler));
 // End hot reloading
 
 app.use(express.static('./public'));
-app.use(express.static('./node_modules/bootstrap/dist'));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
