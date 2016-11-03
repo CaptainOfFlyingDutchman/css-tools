@@ -20,6 +20,13 @@ export default class App extends Component {
 						{React.cloneElement(this.props.children)}
 					</div>
 				</div>
+
+				<div className="row text-center">
+					<div className="col-xs-12">
+						<p>Made with &#9829; by <a href="https://twitter.com/Manvendra_SK">Manvendra Singh</a></p>
+						<p>Source at <a href="https://github.com/ManvendraSK/css-tools">https://github.com/ManvendraSK/css-tools</a></p>
+					</div>
+				</div>
 			</div>
 			);
 	}
