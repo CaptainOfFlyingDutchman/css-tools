@@ -1,4 +1,4 @@
-# CSS tools build in React.js
+# CSS tools built in React.js
 
 This repo is the work on creating a few handful css tools those are also open source.
 
